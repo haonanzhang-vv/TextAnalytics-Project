@@ -1,2 +1,2 @@
 # TextAnalytics-Project
-Data Science Project Modules for Twitter Sentiment Analysi
+Data Science Project Modules for Twitter Sentiment Analysis
