@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<title>Song Analytics</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<body background="static/background10.jpg">
+<style>
+
+    .bottomright {
+        position: absolute;
+        bottom: 8px;
+        right: 16px;
+        font-size: 18px;
+    }
+
+</style>
+<body>
+
+<!-- Sidebar with image -->
+<div>
+    <div class="w3-content w3-section" style="float:left;width:40%;">
+        <img class="mySlides" src="static/1960.png" style="width:100%">
+        <<img class="mySlides" src="static/1970.png" style="width:100%">
+        <img class="mySlides" src="static/1980.png" style="width:100%">
+        <img class="mySlides" src="static/1990.png" style="width:100%">
+        <img class="mySlides" src="static/2000.png" style="width:100%">
+        <img class="mySlides" src="static/2010.png" style="width:100%">
+    </div>
+
+    <script>
+        var myIndex = 0;
+        carousel();
+
+        function carousel() {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            myIndex++;
+            if (myIndex > x.length) {myIndex = 1}
+            x[myIndex-1].style.display = "block";
+            setTimeout(carousel, 2000); // Change image every 2 seconds
+        }
+    </script>
+
+
+
+    <!-- Page Content -->
+    <div class="w3-main w3-padding-large" style="float:right;width:50%;">
+
+        <!-- Header -->
+        <header class="w3-container w3-center" style="padding:128px 16px" id="home">
+            <h1 class="w3-jumbo"><b>Dance to the Song</b></h1>
+            <p>Enter your lyrics here to know its danceability.</p>
+            <form action="{{url_for('predict')}}" method=POST class=predict>
+                <form action="/input" method=POST>
+                    lyrics: <input type="text" required name="lyrics"><br>
+                    <input type="submit" value="Submit">
+
+                </form>
+            </form>
+        </header>
+
+        <!-- Prediction Result -->
+        <div class="bottomright">
+            <h2>Result</h2>
+            <p>{{result}}</p>
+        </div>
+
+        <!-- END PAGE CONTENT -->
+    </div>
+
+</div>
+
+</body>
+</html>

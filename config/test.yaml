@@ -1,0 +1,66 @@
+### This yaml file contains the configuration variables necessary to be define by user
+model:
+  name: Twitter Sentiment Analysis
+  author: Haonan Zhang
+  version: A1
+  description: a model that predicts the sentiment of the airline passenger review
+  tags:
+    - classifier
+  dependencies: requirements.txt
+
+
+acquire:
+    load_s3:
+      sourceurl: s3://nw-haonanzhang-s3/Tweets.csv
+    #  file_location: "data/Tweets.csv"
+
+
+#featurize(data,5,**config["featurize"]["featurize"])
+
+featurize:
+    featurize:
+      method: "tf-idf" ## or "bag-of-words"
+      min_df: 5
+
+
+train_model:
+    split_data:
+      train_size: 0.7
+      randomState: 1
+     # train_save_path: "data/Tweets_train.csv"
+   #   test_save_path: "data/cloud_data_new_test.csv"
+
+    train_model_logistic:
+      cost: 11.5
+      target_column: "positive"
+      fitIntercept: True
+      penalty: "l2"
+      save_tmo: "data/sentiment_class_prediction.pkl"
+
+score_model:
+    # load_csv:
+    #   csv_path: "data/cloud_data_new_test.csv"
+    score_model:
+      thres: 0.7
+      path_to_tmo: "data/sentiment_class_prediction.pkl"
+     # save_path: "data/output"
+
+Evaluation:
+    evaluate_model:
+      target_column: "positive"
+      metrics: ["auc","accuracy","f1_score"]
+
+model_inference:
+    model_inference:
+      path_to_tmo: "data/sentiment_class_prediction.pkl"
+      path_save_plot: "data/output/feature_importance.png"
+
+
+
+
+
+
+
+
+
+
