@@ -1,4 +1,4 @@
-# MSiA423 Project - Twitter Airline Sentiment Analysis
+# Twitter Airline Sentiment Analysis
 ### Developer: Haonan Zhang
 ### QA: Nancy Zhang
 
